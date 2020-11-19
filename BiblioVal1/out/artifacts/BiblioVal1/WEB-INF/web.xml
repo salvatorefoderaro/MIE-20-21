@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="BiblioVal" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name>BiblioVal</display-name>
+    <servlet>
+        <display-name>LoginServlet</display-name>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>ProfAssoluta</display-name>
+        <servlet-name>ProfAssoluta</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.ProfAssolutaServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>ProfRuolo</display-name>
+        <servlet-name>ProfRuolo</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.ProfRuoloServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>UniAdu</display-name>
+        <servlet-name>UniAdu</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.UniAduServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>UniSsd</display-name>
+        <servlet-name>UniSsd</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.UniSsdServlet</servlet-class>
+    </servlet>
+            
+    <servlet>
+        <display-name>GetMessageList</display-name>
+        <servlet-name>GetMessageList</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.GetMessageList</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>SaveMessage</display-name>
+        <servlet-name>SaveMessage</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.SaveMessageServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>GetAduList</display-name>
+        <servlet-name>GetAduList</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.GetAduListServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>ProfAssoluta</display-name>
+        <servlet-name>ProfAssoluta</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.ProfAssolutaServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>GetSsdList</display-name>
+        <servlet-name>GetSsdList</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.GetSsdListServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>PerformanceAdu</display-name>
+        <servlet-name>PerformanceAdu</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.PerformanceAduServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>Quartili</display-name>
+        <servlet-name>Quartili</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.QuartiliServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>Top20</display-name>
+        <servlet-name>Top20</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.Top20Servlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>Top20Adu</display-name>
+        <servlet-name>Top20Adu</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.Top20AduServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>RegisterServlet</display-name>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.RegisterServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>PerformanceSsd</display-name>
+        <servlet-name>PerformanceSsd</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.PerformanceSsdServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <display-name>ConfrontoPerformance</display-name>
+        <servlet-name>ConfrontoPerformance</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.ConfrontoPerformanceServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>UpdateUserServlet</display-name>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.UpdateUserServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>DeleteUserServlet</display-name>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.DeleteUserServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>DeleteMsgServlet</display-name>
+        <servlet-name>DeleteMsgServlet</servlet-name>
+        <servlet-class>it.mie.biblioval.controller.DeleteMsgServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>UploadServlet</servlet-class>
+        <servlet-class>it.mie.biblioval.controller.UploadServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>RipartPersServlet</servlet-name>
+        <servlet-class>RipartPersServlet</servlet-class>
+        <servlet-class>it.mie.biblioval.controller.RipartPersServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>PerformanceUni</servlet-name>
+        <servlet-class>PerformanceUni</servlet-class>
+        <servlet-class>it.mie.biblioval.controller.PerformanceUniServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AttiviInattivi</servlet-name>
+        <servlet-class>AttiviInattivi</servlet-class>
+        <servlet-class>it.mie.biblioval.controller.AttiviInattivi</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GetMessageList</servlet-name>
+        <url-pattern>/GetMessageList</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SaveMessage</servlet-name>
+        <url-pattern>/SaveMessage</url-pattern>
+    </servlet-mapping>
+            
+    <servlet-mapping>
+        <servlet-name>Quartili</servlet-name>
+        <url-pattern>/admin/Quartili</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Quartili</servlet-name>
+        <url-pattern>/client/Quartili</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ProfAssoluta</servlet-name>
+        <url-pattern>/admin/ProfAssoluta</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ProfAssoluta</servlet-name>
+        <url-pattern>/client/ProfAssoluta</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProfRuolo</servlet-name>
+        <url-pattern>/admin/ProfRuolo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ProfRuolo</servlet-name>
+        <url-pattern>/client/ProfRuolo</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UniAdu</servlet-name>
+        <url-pattern>/admin/UniAdu</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UniAdu</servlet-name>
+        <url-pattern>/client/UniAdu</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UniSsd</servlet-name>
+        <url-pattern>/admin/UniSsd</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UniSsd</servlet-name>
+        <url-pattern>/client/UniSsd</url-pattern>
+    </servlet-mapping>
+            
+    <servlet-mapping>
+        <servlet-name>Top20</servlet-name>
+        <url-pattern>/admin/Top20</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Top20</servlet-name>
+        <url-pattern>/client/Top20</url-pattern>
+    </servlet-mapping>    
+        
+    <servlet-mapping>
+        <servlet-name>Top20Adu</servlet-name>
+        <url-pattern>/admin/Top20Adu</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Top20Adu</servlet-name>
+        <url-pattern>/client/Top20Adu</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ConfrontoPerformance</servlet-name>
+        <url-pattern>/admin/ConfrontoPerformance</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ConfrontoPerformance</servlet-name>
+        <url-pattern>/client/ConfrontoPerformance</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>GetSsdList</servlet-name>
+        <url-pattern>/admin/GetSsdList</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>GetSsdList</servlet-name>
+        <url-pattern>/client/GetSsdList</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>GetAduList</servlet-name>
+        <url-pattern>/admin/GetAduList</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>GetAduList</servlet-name>
+        <url-pattern>/client/GetAduList</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PerformanceSsd</servlet-name>
+        <url-pattern>/client/PerformanceSsd</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PerformanceSsd</servlet-name>
+        <url-pattern>/admin/PerformanceSsd</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PerformanceAdu</servlet-name>
+        <url-pattern>/client/PerformanceAdu</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PerformanceAdu</servlet-name>
+        <url-pattern>/admin/PerformanceAdu</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PerformanceUni</servlet-name>
+        <url-pattern>/admin/PerformanceUni</url-pattern>
+    </servlet-mapping> 
+      
+    <servlet-mapping>
+        <servlet-name>PerformanceUni</servlet-name>
+        <url-pattern>/client/PerformanceUni</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/admin/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <url-pattern>/admin/UpdateUserServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <url-pattern>/admin/DeleteUserServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DeleteMsgServlet</servlet-name>
+        <url-pattern>/DeleteMsgServlet</url-pattern>
+    </servlet-mapping>
+            
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/admin/UploadServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>AttiviInattivi</servlet-name>
+        <url-pattern>/admin/AttiviInattivi</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>AttiviInattivi</servlet-name>
+        <url-pattern>/client/AttiviInattivi</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RipartPersServlet</servlet-name>
+        <url-pattern>/admin/RipartPersServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RipartPersServlet</servlet-name>
+        <url-pattern>/client/RipartPersServlet</url-pattern>
+    </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <context-param> 
+        <description>Location to store uploaded file</description> 
+        <param-name>file-upload</param-name> 
+        <param-value>
+            ../data/          
+        </param-value> 
+    </context-param>
+</web-app>

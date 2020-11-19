@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="BiblioVal1">
+    <output-path>$PROJECT_DIR$/out/artifacts/BiblioVal1</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="BiblioVal1/web/Web" />
+    </root>
+  </artifact>
+</component>
