@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,19 +36,15 @@
         <script src="../bootstrap/js/legend.js"></script>
         <script src="../bootstrap/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
         <script src="../bootstrap/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-        
+
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
                     responsive: true
                 });
             });
-            function openModalChangeUni(selectedUni) {
-                $('#modalSelectUni').modal("show");
-                document.getElementById("uni").value = selectedUni;
-            }
-            ;
-            function reload(){
+            
+            function reload() {
                 location.reload();
             }
         </script>
@@ -57,15 +55,7 @@
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("../login.jsp");
             }
-            if (!session.getAttribute("role").toString().equalsIgnoreCase("admin")) {
-                response.sendRedirect("../client.jsp");
-            }
         %>
-
-
-
-
-
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -77,7 +67,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Pannello Amministratore</a>
+                    <a class="navbar-brand">Pannello Cliente</a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -100,23 +90,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="../admin.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utenti<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="addUser.jsp">Inserisci Utente</a>
-                                    </li>
-                                    <li>
-                                        <a href="manageUser">Modifica Utenti</a>
-                                    </li>
-
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="updateDB.jsp"><i class="fa fa-database"></i> Update Database</a>
+                                <a href="../client.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
@@ -187,110 +161,64 @@
                 <!-- /.navbar-static-side -->
             </nav>
 
-               <div id="page-wrapper">    
-                  <div class="row">
-                      <div class="col-lg-12">
-                          <h1 class="page-header">Tabella Universit� per SSD</h1>
-                      </div>
-                  </div>
-                        
-                   <c:choose>
-                        <c:when test="${selectedUni == 'null'}">
-                            <script>
-                                $(window).load(function () {
-                                    $('#modalSelectUni').modal("show");
-                                });
-                            </script>
-                        </c:when>
-                            
-                        <c:when test="${uniSsdList == 'null'}">
-                            <script>
-                                 $.post('UniSsd',reload);
-                            </script>                            
-                        </c:when>
-                            
-                        <c:otherwise>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="row">
-                                                        <div class="col-lg-6" align="left">
-                                                            <h4>Universit�: ${selectedUni}</h4>
-                                                        </div>
-                                                        <div class="col-lg-6" align="right">
-                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
-                                                        </div>  
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="dataTable_wrapper">
-                                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>SSD</th>
-                                                                    <th>Reasearch Staff</th>
-                                                                    <th>FSS</th>
-                                                                    <th>Rank</th>
-                                                                    <th>Percentile</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <c:forEach items="${uniSsdList}" var="p">
-                                                                    <tr class="odd gradeX">
-                                                                        <td style="min-width: 100px">${p.getSSD()}</td>
-                                                                        <td>${p.getResearchStaff()}</td>
-                                                                        <td>${p.getFSS()}</td>  
-                                                                        <td style="min-width: 100px">${p.getRank()}</td> 
-                                                                        <td>${p.getPercentile()}</td>  
-                                                                    </tr>
-                                                                </c:forEach>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+            <div id="page-wrapper">    
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Tabella Universit� per ADU</h1>
+                    </div>
+                </div>
+
+                <c:choose>
+
+                    <c:when test="${uniAduList == 'null'}">
+                        <script>
+                            $.post('UniAdu', reload);
+                        </script>                            
+                    </c:when>
+
+                    <c:otherwise>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-lg-6" align="left">
+                                                <h4>Universit�: ${selectedUni}</h4>
                                             </div>
                                         </div>
-                                    </div>                              
-                        </c:otherwise>
-                    </c:choose>
-              </div>
-        </div>
-
-
-    <!-- /#wrapper -->
-    <div class="modal fade" id="modalSelectUni" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
-                </div>
-                <div class="modal-body" align="center">
-                    <form role="form" action="UniSsd" method="POST">
-                        <div class="form-group">
-                            <select class="form-control" name="uni" id="uni">
-                                <c:forEach items="${uniList}" var="uni">
-                                    <c:choose>
-                                        <c:when test="${uni == ''}"></c:when>
-                                        <c:when test="${uni == 'all'}"></c:when>
-                                        <c:otherwise>
-                                            <option value="${uni}">${uni}</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div align="center">
-                            <input type="submit" value="Scegli" class="btn btn-primary">
-                        </div>
-                    </form>
-                </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="dataTable_wrapper">
+                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ADU</th>
+                                                        <th>Reasearch Staff</th>
+                                                        <th>FSS</th>
+                                                        <th>Rank</th>
+                                                        <th>Percentile</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${uniAduList}" var="p">
+                                                        <tr class="odd gradeX">
+                                                            <td style="min-width: 100px">${p.getADU()}</td>
+                                                            <td>${p.getResearchStaff()}</td>
+                                                            <td>${p.getFSS()}</td>  
+                                                            <td style="min-width: 100px">${p.getRank()}</td> 
+                                                            <td>${p.getPercentile()}</td>  
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                              
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
-    </div>
-
-</body>
-
+    </body>
 </html>

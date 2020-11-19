@@ -48,24 +48,19 @@
             ;
             function reload(){
                 location.reload();
-            }
+            }            
         </script>
     </head>
 
     <body>
-        <%
-            if (null == session.getAttribute("userId")) {
-                response.sendRedirect("../login.jsp");
-            }
-            if (!session.getAttribute("role").toString().equalsIgnoreCase("admin")) {
-                response.sendRedirect("../client.jsp");
-            }
-        %>
-
-
-
-
-
+    <%
+        if (null == session.getAttribute("userId")) {
+            response.sendRedirect("../login.jsp");
+        }
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+            response.sendRedirect("../login.jsp");
+        }
+    %>
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -100,24 +95,9 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="../admin.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                                <a href="../resJournal.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utenti<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="addUser.jsp">Inserisci Utente</a>
-                                    </li>
-                                    <li>
-                                        <a href="manageUser">Modifica Utenti</a>
-                                    </li>
 
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="updateDB.jsp"><i class="fa fa-database"></i> Update Database</a>
-                            </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
@@ -190,7 +170,7 @@
                <div id="page-wrapper">    
                   <div class="row">
                       <div class="col-lg-12">
-                          <h1 class="page-header">Tabella Universit� per SSD</h1>
+                          <h1 class="page-header">Tabella Universit� per ADU</h1>
                       </div>
                   </div>
                         
@@ -203,9 +183,9 @@
                             </script>
                         </c:when>
                             
-                        <c:when test="${uniSsdList == 'null'}">
+                        <c:when test="${uniAduList == 'null'}">
                             <script>
-                                 $.post('UniSsd',reload);
+                                 $.post('UniAdu', reload);
                             </script>                            
                         </c:when>
                             
@@ -228,7 +208,7 @@
                                                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>SSD</th>
+                                                                    <th>ADU</th>
                                                                     <th>Reasearch Staff</th>
                                                                     <th>FSS</th>
                                                                     <th>Rank</th>
@@ -236,9 +216,9 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <c:forEach items="${uniSsdList}" var="p">
+                                                                <c:forEach items="${uniAduList}" var="p">
                                                                     <tr class="odd gradeX">
-                                                                        <td style="min-width: 100px">${p.getSSD()}</td>
+                                                                        <td style="min-width: 100px">${p.getADU()}</td>
                                                                         <td>${p.getResearchStaff()}</td>
                                                                         <td>${p.getFSS()}</td>  
                                                                         <td style="min-width: 100px">${p.getRank()}</td> 
@@ -268,7 +248,7 @@
                     <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
                 </div>
                 <div class="modal-body" align="center">
-                    <form role="form" action="UniSsd" method="POST">
+                    <form role="form" action="UniAdu" method="POST">
                         <div class="form-group">
                             <select class="form-control" name="uni" id="uni">
                                 <c:forEach items="${uniList}" var="uni">

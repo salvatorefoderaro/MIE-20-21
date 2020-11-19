@@ -59,22 +59,14 @@
 
     <body>
 
-        <%
-            if (null == session.getAttribute("userId")) {
-                response.sendRedirect("login.jsp");
-            }
-            if (session.getAttribute("role").toString().equalsIgnoreCase("journalist") || session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
-                response.sendRedirect("resJournal.jsp");
-            }
-
-            if (session.getAttribute("role").toString().equalsIgnoreCase("student")){
-                response.sendRedirect("student.jsp");
-            }
-
-            if (!session.getAttribute("role").toString().equalsIgnoreCase("admin")){
-                response.sendRedirect("logout.jsp");
-            }
-        %>
+    <%
+        if (null == session.getAttribute("userId")) {
+            response.sendRedirect("login.jsp");
+        }
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+            response.sendRedirect("logout.jsp");
+        }
+    %>
         <c:if test="${messageList == 'null'}">
             <script>
                 $.post('GetMessageList', refresh);
@@ -114,38 +106,22 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="admin.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utenti<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="admin/addUser.jsp">Inserisci Utente</a>
-                                    </li>
-                                    <li>
-                                        <a href="admin/manageUser">Modifica Utenti</a>
-                                    </li>
-
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="admin/updateDB.jsp"><i class="fa fa-database"></i> Update Database</a>
+                                <a href="resJournal.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="admin/uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="resJournal/uniAdu.jsp"> Vista Universit� per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="admin/uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="resJournal/uniSsd.jsp"> Vista Universit� per SSD</a>
                                     </li>
                                     <li>
-                                        <a href="admin/profAssoluta.jsp">Vista Docenti Assoluta</a>
+                                        <a href="resJournal/profAssoluta.jsp">Vista Docenti Assoluta</a>
                                     </li>
                                     <li>
-                                        <a href="admin/profRuolo.jsp">Vista Docenti per Ruolo</a>
+                                        <a href="resJournal/profRuolo.jsp">Vista Docenti per Ruolo</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -154,41 +130,41 @@
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Grafici<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="admin/ripartizionePersonale.jsp">Ripartizione Personale</a>
+                                        <a href="resJournal/ripartizionePersonale.jsp">Ripartizione Personale</a>
                                     </li>
                                     <li>
                                         <a href="#">Performance Ateneo <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="admin/performanceUni.jsp">Performance media</a>
+                                                <a href="resJournal/performanceUni.jsp">Performance media</a>
                                             </li>                                            
                                             <li>
-                                                <a href="admin/performanceADU.jsp">Performanance delle ADU</a>
+                                                <a href="resJournal/performanceADU.jsp">Performanance delle ADU</a>
                                             </li>                                            
                                             <li>
-                                                <a href="admin/performanceSSD.jsp">Performance degli SSD</a>
+                                                <a href="resJournal/performanceSSD.jsp">Performance degli SSD</a>
                                             </li>
                                             <li>
-                                                <a href="admin/quartili.jsp">Performance medie per quartile</a>
+                                                <a href="resJournal/quartili.jsp">Performance medie per quartile</a>
                                             </li> 
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="admin/confrontiIndividui.jsp">Performance individuali</a>
+                                        <a href="resJournal/confrontiIndividui.jsp">Performance individuali</a>
                                     </li>
                                     <li>
                                         <a href="#">Top Scientist<span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                           <li>
-                                                <a href="admin/top20.jsp">Top 10% Scientist</a>
+                                                <a href="resJournal/top20.jsp">Top 10% Scientist</a>
                                           </li>
                                           <li>
-                                                <a href="admin/top20Adu.jsp">Top 10% Scientist per ADU</a>
+                                                <a href="resJournal/top20Adu.jsp">Top 10% Scientist per ADU</a>
                                           </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="admin/attiviInattivi.jsp">Percentuale Improduttivi</a>
+                                        <a href="resJournal/attiviInattivi.jsp">Percentuale Improduttivi</a>
                                     </li> 
                                 </ul>
                                 <!-- /.nav-second-level -->

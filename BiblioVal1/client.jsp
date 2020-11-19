@@ -1,3 +1,8 @@
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Connection" %>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,12 +31,51 @@
 
     <body>
 
-        <%
+    <%
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("login.jsp");
             }
-            if (session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
+
+            if (session.getAttribute("role").toString().equalsIgnoreCase("admin")){
+                response.sendRedirect("admin.jsp");
+            }
+
+            if (session.getAttribute("role").toString().equalsIgnoreCase("enterprise")){
                 response.sendRedirect("enterprise.jsp");
+            }
+
+            if (session.getAttribute("role").toString().equalsIgnoreCase("journalist") || session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+                response.sendRedirect("resJournal.jsp");
+            }
+
+            if (!session.getAttribute("role").toString().equalsIgnoreCase("student")){
+                response.sendRedirect("logout.jsp");
+            }
+
+            try {
+                Class.forName("com.mysql.jdbc.Driver");  //load driver
+
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
+
+                PreparedStatement ps = con.prepareStatement("SELECT * FROM USER WHERE user_id = ?");
+
+                ps.setString(1, session.getAttribute("userId").toString());
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+
+                    session.setAttribute("facolta", rs.getString("facolta"));
+                    session.setAttribute("uniScelta", rs.getString("uni"));
+
+                } else {
+
+                    out.println("COUPON NON CORRETTO.");
+
+                }
+            } catch(Exception e)
+            {
+                out.println(e.toString());
+            }
         %>
 
         <div id="bene" class="alert alert-success fade in" style="display: none">
@@ -41,7 +85,7 @@
 
         <div id="error" class="alert alert-danger fade in" style="display: none">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Operazione Fallita</strong> -  Il messaggio non è stato inviato.
+            <strong>Operazione Fallita</strong> -  Il messaggio non � stato inviato.
         </div>
         
         <div id="wrapper">
@@ -83,59 +127,59 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="client/uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="student/uniAdu.jsp"> Vista Universit� per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="client/uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="student/uniSsd.jsp"> Vista Universit� per SSD</a>
                                     </li>
                                     <li>
-                                        <a href="client/profAssoluta.jsp">Vista Docenti Assoluta</a>
+                                        <a href="student/profAssoluta.jsp">Vista Docenti Assoluta</a>
                                     </li>
                                     <li>
-                                        <a href="client/profRuolo.jsp">Vista Docenti per Ruolo</a>
+                                        <a href="student/profRuolo.jsp">Vista Docenti per Ruolo</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Grafici <%=session.getAttribute("selectedUni")%><span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Grafici<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="client/ripartizionePersonale.jsp">Ripartizione Personale</a>
+                                        <a href="student/ripartizionePersonale.jsp">Ripartizione Personale</a>
                                     </li>
                                     <li>
                                         <a href="#">Performance Ateneo <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="client/performanceUni.jsp">Performance media</a>
+                                                <a href="student/performanceUni.jsp">Performance media</a>
                                             </li>                                            
                                             <li>
-                                                <a href="client/performanceADU.jsp">Performanance delle ADU</a>
+                                                <a href="student/performanceADU.jsp">Performanance delle ADU</a>
                                             </li>                                            
                                             <li>
-                                                <a href="client/performanceSSD.jsp">Performance degli SSD</a>
+                                                <a href="student/performanceSSD.jsp">Performance degli SSD</a>
                                             </li>
                                             <li>
-                                                <a href="client/quartili.jsp">Performance medie per quartile</a>
+                                                <a href="student/quartili.jsp">Performance medie per quartile</a>
                                             </li> 
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="client/confrontiIndividui.jsp">Performance individuali</a>
+                                        <a href="student/confrontiIndividui.jsp">Performance individuali</a>
                                     </li>
                                     <li>
                                         <a href="#">Top Scientist<span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="client/top20.jsp">Top 10% Scientist</a>
+                                                <a href="student/top20.jsp">Top 10% Scientist</a>
                                             </li>
                                             <li>
-                                                <a href="client/top20Adu.jsp">Top 10% Scientist per ADU</a>
+                                                <a href="student/top20Adu.jsp">Top 10% Scientist per ADU</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="client/attiviInattivi.jsp">Percentuale Improduttivi</a>
+                                        <a href="student/attiviInattivi.jsp">Percentuale Improduttivi</a>
                                     </li> 
                                 </ul>
                                 <!-- /.nav-second-level -->

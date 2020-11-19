@@ -61,6 +61,11 @@
                 response.sendRedirect("../client.jsp");
             }
         %>
+
+
+
+
+
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -117,10 +122,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista Universitï¿½ per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista Universitï¿½ per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -185,7 +190,7 @@
                <div id="page-wrapper">    
                   <div class="row">
                       <div class="col-lg-12">
-                          <h1 class="page-header">Tabella Università per SSD</h1>
+                          <h1 class="page-header">Tabella Universitï¿½ per SSD</h1>
                       </div>
                   </div>
                         
@@ -211,10 +216,10 @@
                                                 <div class="panel-heading">
                                                     <div class="row">
                                                         <div class="col-lg-6" align="left">
-                                                            <h4>Università: ${selectedUni}</h4>
+                                                            <h4>Universitï¿½: ${selectedUni}</h4>
                                                         </div>
                                                         <div class="col-lg-6" align="right">
-                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univeristà</button>
+                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univeristï¿½</button>
                                                         </div>  
                                                     </div>
                                                 </div>
@@ -260,7 +265,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" align="center" >Seleziona l'università</h4>
+                    <h4 class="modal-title" align="center" >Seleziona l'universitï¿½</h4>
                 </div>
                 <div class="modal-body" align="center">
                     <form role="form" action="UniSsd" method="POST">

@@ -53,14 +53,14 @@
     </head>
 
     <body>
-        <%
-            if (null == session.getAttribute("userId")) {
-                response.sendRedirect("../login.jsp");
-            }
-            if (!session.getAttribute("role").toString().equalsIgnoreCase("admin")) {
-                response.sendRedirect("../client.jsp");
-            }
-        %>
+    <%
+        if (null == session.getAttribute("userId")) {
+            response.sendRedirect("../login.jsp");
+        }
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+            response.sendRedirect("../login.jsp");
+        }
+    %>
 
 
 
@@ -102,22 +102,8 @@
                             <li>
                                 <a href="../admin.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utenti<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="addUser.jsp">Inserisci Utente</a>
-                                    </li>
-                                    <li>
-                                        <a href="manageUser">Modifica Utenti</a>
-                                    </li>
 
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="updateDB.jsp"><i class="fa fa-database"></i> Update Database</a>
-                            </li>
+
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">

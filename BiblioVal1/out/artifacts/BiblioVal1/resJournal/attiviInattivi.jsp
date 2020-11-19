@@ -19,7 +19,6 @@
         <link href="../bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
         <link href="../bootstrap/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="../bootstrap/css/demo.css" rel="stylesheet" type="text/css">
-        <link href="../bootstrap/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
 
         <script src="../graph/Chart.js"></script>
 
@@ -32,23 +31,12 @@
         <script src="../bootstrap/js/jquery.cookie.min.js"></script>
         <script src="../graph/Chart.js"></script>
         <script src="../bootstrap/js/legend.js"></script>
-        <script src="../bootstrap/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-        <script src="../bootstrap/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-        
         <script>
-            $(document).ready(function () {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
-            });
             function openModalChangeUni(selectedUni) {
                 $('#modalSelectUni').modal("show");
                 document.getElementById("uni").value = selectedUni;
             }
             ;
-            function reload(){
-                location.reload();
-            }
         </script>
     </head>
 
@@ -57,15 +45,10 @@
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("../login.jsp");
             }
-            if (!session.getAttribute("role").toString().equalsIgnoreCase("admin")) {
-                response.sendRedirect("../client.jsp");
+            if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+                response.sendRedirect("../login.jsp");
             }
         %>
-
-
-
-
-
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -101,22 +84,6 @@
                         <ul class="nav" id="side-menu">
                             <li>
                                 <a href="../admin.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utenti<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="addUser.jsp">Inserisci Utente</a>
-                                    </li>
-                                    <li>
-                                        <a href="manageUser">Modifica Utenti</a>
-                                    </li>
-
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="updateDB.jsp"><i class="fa fa-database"></i> Update Database</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
@@ -187,110 +154,159 @@
                 <!-- /.navbar-static-side -->
             </nav>
 
-               <div id="page-wrapper">    
-                  <div class="row">
-                      <div class="col-lg-12">
-                          <h1 class="page-header">Tabella Universit� per SSD</h1>
-                      </div>
-                  </div>
-                        
-                   <c:choose>
-                        <c:when test="${selectedUni == 'null'}">
-                            <script>
-                                $(window).load(function () {
-                                    $('#modalSelectUni').modal("show");
-                                });
-                            </script>
-                        </c:when>
-                            
-                        <c:when test="${uniSsdList == 'null'}">
-                            <script>
-                                 $.post('UniSsd',reload);
-                            </script>                            
-                        </c:when>
-                            
-                        <c:otherwise>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <div class="row">
-                                                        <div class="col-lg-6" align="left">
-                                                            <h4>Universit�: ${selectedUni}</h4>
-                                                        </div>
-                                                        <div class="col-lg-6" align="right">
-                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
-                                                        </div>  
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="dataTable_wrapper">
-                                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>SSD</th>
-                                                                    <th>Reasearch Staff</th>
-                                                                    <th>FSS</th>
-                                                                    <th>Rank</th>
-                                                                    <th>Percentile</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <c:forEach items="${uniSsdList}" var="p">
-                                                                    <tr class="odd gradeX">
-                                                                        <td style="min-width: 100px">${p.getSSD()}</td>
-                                                                        <td>${p.getResearchStaff()}</td>
-                                                                        <td>${p.getFSS()}</td>  
-                                                                        <td style="min-width: 100px">${p.getRank()}</td> 
-                                                                        <td>${p.getPercentile()}</td>  
-                                                                    </tr>
-                                                                </c:forEach>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                              
-                        </c:otherwise>
-                    </c:choose>
-              </div>
-        </div>
-
-
-    <!-- /#wrapper -->
-    <div class="modal fade" id="modalSelectUni" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Percentuale attivi e inattivi</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <div class="modal-body" align="center">
-                    <form role="form" action="UniSsd" method="POST">
-                        <div class="form-group">
-                            <select class="form-control" name="uni" id="uni">
-                                <c:forEach items="${uniList}" var="uni">
-                                    <c:choose>
-                                        <c:when test="${uni == ''}"></c:when>
-                                        <c:when test="${uni == 'all'}"></c:when>
-                                        <c:otherwise>
-                                            <option value="${uni}">${uni}</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-lg-6" align="left">
+                                        <h4>Universit�: ${selectedUni}</h4>
+                                    </div>
+                                    <div class="col-lg-6" align="right">
+                                        <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-3" align="left">
+                                        <h2>
+                                            Legenda:
+                                        </h2>
+                                        <br>                                         
+                                        <div align="left" id="js-legend">  </div>
+                                    </div>
+                                    <div class="col-lg-6" align="right" id="chartContainer">
+                                        <canvas id="myLineChart" width="400" height="400"></canvas>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div align="center">
-                            <input type="submit" value="Scegli" class="btn btn-primary">
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- /#wrapper -->
+        <div class="modal fade" id="modalSelectUni" role="dialog">
+            <div class="modal-dialog">
 
-</body>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
+                    </div>
+                    <div class="modal-body" align="center">
+                        <form role="form" action="AttiviInattivi" method="POST">
+                            <div class="form-group">
+                                <select class="form-control" name="uni" id="uni">
+                                    <c:forEach items="${uniList}" var="uni">
+                                        <c:choose>
+                                            <c:when test="${uni == ''}"></c:when>
+                                            <c:when test="${uni == 'all'}"></c:when>
+                                            <c:otherwise>
+                                                <option value="${uni}">${uni}</option>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div align="center">
+                                <input type="submit" value="Scegli" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <c:choose>
+            <c:when test="${selectedUni == 'null'}">
+                <script>
+                    $(window).load(function () {
+                        $('#modalSelectUni').modal("show");
+                    });
+                </script>
+            </c:when>
+            <c:otherwise>
+                <script>
+                    function createBarChart() {
+                        var array = $.cookie('inatAttList');
+                        var valori = [];
+                        valori = JSON.parse(array);
+                        valori.push(array[0]);
+                        valori.push(array[1]);
+                        valori = JSON.parse(array);
+
+                        var dataset = [];
+                        dataset.push(inattivi);
+                        dataset.push(attivi);
+
+                        var label = [];
+
+                        label.push("Improduttivi");
+                        label.push("Produttivi");
+
+                        var inattivi = {
+                            label: "Improduttivi ("+valori[0].toPrecision(2)+"%)",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: [valori[0]]
+                        }
+
+                        var attivi = {
+                            label: "Benchmark nazionale ("+valori[1].toPrecision(2)+"%)",
+                            fillColor: "rgba(151,187,205,0.5)",
+                            strokeColor: "rgba(151,187,205,0.8)",
+                            highlightFill: "rgba(151,187,205,0.75)",
+                            highlightStroke: "rgba(151,187,205,1)",
+                            data: [valori[1]]
+                        }
+                        var lab = [];
+                        var generale = {
+                            labels: lab,
+                            datasets: [inattivi, attivi]
+                        };
+                        var options = {
+                            showTooltips: false
+                        }
+
+                        var ctx = $("#myLineChart").get(0).getContext("2d");
+                        var myBarChart = new Chart(ctx).Bar(generale, options);
+                        legend(document.getElementById("js-legend"), generale, myBarChart);
+                    }
+                    ;
+                    function test() {
+                        if ($.cookie('inatAttList') === 'null' || !$.cookie('inatAttList')) {
+                            $.post('AttiviInattivi', createBarChart);
+                        } else
+                            createBarChart();
+                    }
+                    ;
+                    test();
+                </script>
+            </c:otherwise>
+        </c:choose>
+
+        <script>
+            function exit() {
+                $.cookie('inatAttList', "", {expires: -1});
+            }
+            ;
+
+            window.onunload = exit;
+        </script>
+
+    </body>
 
 </html>
