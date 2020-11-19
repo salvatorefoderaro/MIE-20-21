@@ -57,7 +57,7 @@
         if (null == session.getAttribute("userId")) {
             response.sendRedirect("../login.jsp");
         }
-        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") && !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
             response.sendRedirect("../login.jsp");
         }
     %>
@@ -95,7 +95,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="../admin.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                                <a href="../resJournal.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                             </li>
 
                             <li>
@@ -185,7 +185,7 @@
                             
                         <c:when test="${profRuoloList == 'null'}">
                             <script>
-                                 $.post('ProfRuolo', reload);
+                                 $.post('../admin/ProfRuolo', reload);
                             </script>                            
                         </c:when>
                             
@@ -252,7 +252,7 @@
                     <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
                 </div>
                 <div class="modal-body" align="center">
-                    <form role="form" action="ProfRuolo" method="POST">
+                    <form role="form" action="../admin/ProfRuolo" method="POST">
                         <div class="form-group">
                             <select class="form-control" name="uni" id="uni">
                                 <c:forEach items="${uniList}" var="uni">

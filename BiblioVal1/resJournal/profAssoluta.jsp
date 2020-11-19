@@ -57,7 +57,7 @@
         if (null == session.getAttribute("userId")) {
             response.sendRedirect("../login.jsp");
         }
-        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") && !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
             response.sendRedirect("../login.jsp");
         }
     %>
@@ -185,7 +185,7 @@
                             
                         <c:when test="${profAssolutaList == 'null'}">
                             <script>
-                                 $.post('ProfAssoluta',reload);
+                                 $.post('../admin/ProfAssoluta',reload);
                             </script>                            
                         </c:when>
                             
@@ -252,7 +252,7 @@
                     <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
                 </div>
                 <div class="modal-body" align="center">
-                    <form role="form" action="ProfAssoluta" method="POST">
+                    <form role="form" action="../admin/ProfAssoluta" method="POST">
                         <div class="form-group">
                             <select class="form-control" name="uni" id="uni">
                                 <c:forEach items="${uniList}" var="uni">

@@ -141,9 +141,15 @@
                         pstmt.setString(4,var4);
                         pstmt.setString(5,request.getParameter("ruolo"));
                         pstmt.setString(6,request.getParameter("scadenza"));
-                        pstmt.setString(7,(String)session.getAttribute("userId"));
-                        pstmt.setString(8,(String)session.getAttribute("userId"));
-                        pstmt.setString(9,request.getParameter("facolta"));
+                        if (request.getParameter("ruolo") = "researcher"){
+                            pstmt.setString(7,"all");
+                            pstmt.setString(8,(String)session.getAttribute("userId"));
+                            pstmt.setString(9,null);
+                        } else {
+                            pstmt.setString(7, (String) session.getAttribute("userId"));
+                            pstmt.setString(8, (String) session.getAttribute("userId"));
+                            pstmt.setString(9, request.getParameter("facolta"));
+                        }
                         pstmt.executeUpdate(); //execute query
 
                         con.close(); //connection close
@@ -317,8 +323,8 @@
                                                 <label>Inserisci il ruolo dell'utente</label>
                                                 <select class="form-control" name="ruolo" id="role" required>
                                                     <option value=""></option>
-                                                    <option value="ricercatore">Ricercatore</option>
-                                                    <option value="studente">studente</option>
+                                                    <option value="researcher">Ricercatore</option>
+                                                    <option value="student">studente</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">

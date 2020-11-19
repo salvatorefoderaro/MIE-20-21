@@ -57,16 +57,12 @@
         if (null == session.getAttribute("userId")) {
             response.sendRedirect("../login.jsp");
         }
-        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") && !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
             response.sendRedirect("../login.jsp");
         }
     %>
 
-
-
-
-
-        <div id="wrapper">
+     <div id="wrapper">
 
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -191,7 +187,7 @@
                             
                         <c:when test="${uniSsdList == 'null'}">
                             <script>
-                                 $.post('UniSsd',reload);
+                                 $.post('../admin/UniSsd',reload);
                             </script>                            
                         </c:when>
                             
@@ -202,7 +198,7 @@
                                                 <div class="panel-heading">
                                                     <div class="row">
                                                         <div class="col-lg-6" align="left">
-                                                            <h4>Universit�: ${selectedUni}</h4>
+                                                            <h4>Università: ${selectedUni}</h4>
                                                         </div>
                                                         <div class="col-lg-6" align="right">
                                                             <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
@@ -251,10 +247,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
+                    <h4 class="modal-title" align="center" >Seleziona l'università</h4>
                 </div>
                 <div class="modal-body" align="center">
-                    <form role="form" action="UniSsd" method="POST">
+                    <form role="form" action="../admin/UniSsd" method="POST">
                         <div class="form-group">
                             <select class="form-control" name="uni" id="uni">
                                 <c:forEach items="${uniList}" var="uni">

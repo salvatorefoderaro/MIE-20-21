@@ -36,10 +36,19 @@
                 response.sendRedirect("login.jsp");
             }
 
-            if (session.getAttribute("role").toString().equalsIgnoreCase("admin")){
+            else if (session.getAttribute("role").toString().equalsIgnoreCase("admin")){
                 response.sendRedirect("admin.jsp");
             }
-            if (!session.getAttribute("role").toString().equalsIgnoreCase("student")){
+
+            else if (session.getAttribute("role").toString().equalsIgnoreCase("enterprise")){
+                response.sendRedirect("enterprise.jsp");
+            }
+
+            else if (session.getAttribute("role").toString().equalsIgnoreCase("journalist") || session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+                response.sendRedirect("resJournal.jsp");
+            }
+
+             else if (!session.getAttribute("role").toString().equalsIgnoreCase("student")){
                 response.sendRedirect("logout.jsp");
             }
 

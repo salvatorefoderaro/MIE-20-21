@@ -45,7 +45,7 @@
         if (null == session.getAttribute("userId")) {
             response.sendRedirect("../login.jsp");
         }
-        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") && !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
             response.sendRedirect("../login.jsp");
         }
     %>
@@ -207,7 +207,7 @@
                         <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
                     </div>
                     <div class="modal-body" align="center">
-                        <form role="form" action="Top20Adu" method="POST">
+                        <form role="form" action="../admin/Top20Adu" method="POST">
                             <div class="form-group">
                                 <select class="form-control" name="uni" id="uni">
                                     <c:forEach items="${uniList}" var="uni">
@@ -314,7 +314,7 @@
 
                     function test() {
                         if ($.cookie('aduTop20List') === 'null' || !$.cookie('aduTop20List')) {
-                            $.post('Top20Adu', createBarChart);
+                            $.post('../admin/Top20Adu', createBarChart);
                         } else
                             createBarChart();
                     };

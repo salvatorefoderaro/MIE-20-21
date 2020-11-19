@@ -42,7 +42,7 @@
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "Foderaro95"); // create connection
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true", "root", "Foderaro95"); // create connection
 
             PreparedStatement ps = con.prepareStatement("SELECT * FROM COUPON WHERE id = ? AND scadenza >= NOW()");
 

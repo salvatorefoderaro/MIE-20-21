@@ -45,7 +45,7 @@
         if (null == session.getAttribute("userId")) {
             response.sendRedirect("../login.jsp");
         }
-        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") || !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
+        if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") && !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
             response.sendRedirect("../login.jsp");
         }
     %>
@@ -83,7 +83,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="../admin.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                                <a href="../resJournal.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
