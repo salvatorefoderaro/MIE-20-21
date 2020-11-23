@@ -104,7 +104,7 @@
                         <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                <a href="Università.jsp"> Vista Universit� per ADU</a>
                             </li>
                             <li>
                                 <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
@@ -179,7 +179,7 @@
         <c:choose>
             <c:when test="${uniSsdList == 'null'}">
                 <script>
-                    $.post('UniSsd', reload);
+                    $.post('../admin/UniSsd', reload);
                 </script>
             </c:when>
 

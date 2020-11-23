@@ -197,7 +197,7 @@
                             
                         <c:when test="${uniAduList == 'null'}">
                             <script>
-                                 $.post('UniAdu', reload);
+                                 $.post('../admin/UniAdu', reload);
                             </script>                            
                         </c:when>
                             
@@ -260,7 +260,7 @@
                     <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
                 </div>
                 <div class="modal-body" align="center">
-                    <form role="form" action="UniAdu" method="POST">
+                    <form role="form" action="../admin/UniAdu" method="POST">
                         <div class="form-group">
                             <select class="form-control" name="uni" id="uni">
                                 <c:forEach items="${uniList}" var="uni">

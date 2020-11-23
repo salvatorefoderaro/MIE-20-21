@@ -180,7 +180,7 @@
                 <c:choose>
                     <c:when test="${profRuoloList == 'null'}">
                         <script>
-                            $.post('ProfRuolo', reload);
+                            $.post('../admin/ProfRuolo', reload);
                         </script>                            
                     </c:when>
 

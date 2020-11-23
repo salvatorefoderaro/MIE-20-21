@@ -77,7 +77,7 @@
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
 
             PreparedStatement ps = con.prepareStatement("SELECT Distinct Ateneo FROM UNI_ADU_TABLE");
 

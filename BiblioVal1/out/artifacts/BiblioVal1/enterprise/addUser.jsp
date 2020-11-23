@@ -95,6 +95,16 @@
 
     <body>
 
+    <div  id="error" class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Login fallito</strong> -  Nome Utente e/o Password errati.
+    </div>
+
+    <div  id="ok" class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Login fallito</strong> -  Nome Utente e/o Password errati.
+    </div>
+
         <%
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("../login.jsp");
@@ -109,7 +119,7 @@
                            url = "jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true"
                            user = "root" password = "root"/>
         <sql:query dataSource = "${snapshot}" var = "result">
-            SELECT * from UNI_ADU_TABLE WHERE Ateneo= 'Università degli Studi di Pavia (2009-2013)';
+            SELECT * from UNI_ADU_TABLE WHERE Ateneo= '<%= session.getAttribute("userId") %>';
         </sql:query>
 
         <div id="wrapper">
@@ -122,7 +132,7 @@
                     {
                         Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true","root","Foderaro95"); // create connection
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true","root","root"); // create connection
 
                         MessageDigest var1 = MessageDigest.getInstance("MD5");
                         byte[] var2 = var1.digest(request.getParameter("password").getBytes());
@@ -154,12 +164,13 @@
 
                         con.close(); //connection close
 
-                        out.println("UTENTE AGGIUNTO CORRETTAMENTE."); //after update record successfully message
+
+                        session.setAttribute("error2", "ok");
 
                     }
                     catch(Exception e)
                     {
-                        out.println("ERRORE NELL'AGGIUNTA DELL'UTENTE.");
+                        session.setAttribute("error2", "errore");
                     }
 
                 }
@@ -361,21 +372,22 @@
         <!-- /#wrapper -->
 
         <script>
-            function checkError() {
+                function checkError(){
+                if(${error2 == "errore"}) {
+                document.getElementById("error").style.display = 'block';
+            }
+                else  {
+                document.getElementById("error").style.display = 'none';
+            }
 
-                var check = '<%= session.getAttribute("check")%>';
-
-                if (check === 'ok') {
-                    document.getElementById("bene").style.display = 'block';
-                    document.getElementById("error").style.display = 'none';
-                } else if (check === 'no') {
-                    document.getElementById("bene").style.display = 'none';
-                    document.getElementById("error").style.display = 'block';
-                } else {
-                    document.getElementById("error").style.display = 'none';
-                    document.getElementById("bene").style.display = 'none';
-                }
-            };
+                if(${error2 == "ok"}) {
+                document.getElementById("ok").style.display = 'block';
+            }
+                else {
+                document.getElementById("ok").style.display = 'none';
+            }
+            }
+                checkError();
 
             $('#role').change(function() {
                 opt = $(this).val();

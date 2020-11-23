@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>Login Page</title>
+    <title>BiblioEvaluate - Login with Coupon</title>
 
     <link href="bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,7 +42,7 @@
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true", "root", "Foderaro95"); // create connection
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
 
             PreparedStatement ps = con.prepareStatement("SELECT * FROM COUPON WHERE id = ? AND scadenza >= NOW()");
 
@@ -61,11 +61,12 @@
                 con.close(); //connection close
 
                 session.setAttribute("userId", request.getParameter("couponId"));
+                session.setAttribute("role", "journalist");
                 response.sendRedirect("client.jsp");
 
             } else {
 
-                out.println("COUPON NON CORRETTO.");
+                session.setAttribute("error2", "errore");
 
             }
         } catch(Exception e)
@@ -80,7 +81,7 @@
 
 <div  id="error" class="alert alert-danger fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Login fallito</strong> -  Nome Utente e/o Password errati.
+    <strong>Login fallito</strong> -  Coupon non valido.
 </div>
 
 <div  id="scaduto" class="alert alert-danger fade in">
@@ -99,7 +100,7 @@
                     <form method="post" action="loginCoupon.jsp" role="form">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" name="couponId" title="Username" size="30" maxlength="50" placeholder="User Id" autofocus/>
+                                <input class="form-control" name="couponId" title="Coupon" size="30" maxlength="50" placeholder="Coupon Id" autofocus/>
                             </div>
                             <input class="btn btn-lg btn-success btn-block" name="submit" type="submit" value="Login" />
                         </fieldset>

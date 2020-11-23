@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
 <%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
@@ -62,6 +63,16 @@
 
 <body>
 
+<div  id="error" class="alert alert-danger fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Errore nell'eliminazione della licenza.</strong>
+</div>
+
+<div  id="ok" class="alert alert-success fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Licenza eliminata correttamente!</strong>
+</div>
+
 <%
     if (null == session.getAttribute("userId")) {
         response.sendRedirect("../login.jsp");
@@ -100,13 +111,13 @@
 
                 con.close(); //connection close
 
-                out.println("LICENZA ELIMINATA CORRETTAMETE."); //after update record successfully message
+                session.setAttribute("error2", "ok");
 
 
             }
             catch(Exception e)
             {
-                out.println("ERRORE NELL'ELIMINAZIONE DELLA LICENZA.");
+                session.setAttribute("error2", "errore");
             }
 
         }
@@ -164,10 +175,10 @@
                         <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                <a href="uniAdu.jsp"> Vista Università per ADU</a>
                             </li>
                             <li>
-                                <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
+                                <a href="uniSsd.jsp"> Vista Università per SSD</a>
                             </li>
                             <li>
                                 <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -316,5 +327,25 @@
 
     </div>
 </div>
+
+<script>
+    function checkError(){
+        if(${error2 == "errore"}) {
+            document.getElementById("error").style.display = 'block';
+        }
+        else  {
+            document.getElementById("error").style.display = 'none';
+        }
+
+        if(${error2 == "ok"}) {
+            document.getElementById("ok").style.display = 'block';
+        }
+        else {
+            document.getElementById("ok").style.display = 'none';
+        }
+    }
+    checkError();
+</script>
+
 </body>
 </html>

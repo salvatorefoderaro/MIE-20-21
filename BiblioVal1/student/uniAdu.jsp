@@ -96,7 +96,7 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="Università.jsp"> Vista Universit� per ADU</a>
                                     </li>
                                     <li>
                                         <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
@@ -170,9 +170,9 @@
 
                 <c:choose>
 
-                    <c:when test="${uniAduList == 'null'}">
+                    <c:when test="${UniversitàList == 'null'}">
                         <script>
-                            $.post('UniAdu', reload);
+                            $.post('../admin/Università', reload);
                         </script>                            
                     </c:when>
 
@@ -200,7 +200,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach items="${uniAduList}" var="p">
+                                                    <c:forEach items="${UniversitàList}" var="p">
                                                         <tr class="odd gradeX">
                                                             <td style="min-width: 100px">${p.getADU()}</td>
                                                             <td>${p.getResearchStaff()}</td>

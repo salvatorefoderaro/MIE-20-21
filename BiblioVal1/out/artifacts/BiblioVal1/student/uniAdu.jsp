@@ -172,7 +172,7 @@
 
                     <c:when test="${uniAduList == 'null'}">
                         <script>
-                            $.post('UniAdu', reload);
+                            $.post('../admin/UniAdu', reload);
                         </script>                            
                     </c:when>
 

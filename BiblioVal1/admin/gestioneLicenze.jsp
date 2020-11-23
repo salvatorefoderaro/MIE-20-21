@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
 <%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
@@ -165,10 +166,10 @@
                         <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                <a href="uniAdu.jsp"> Vista Università per ADU</a>
                             </li>
                             <li>
-                                <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
+                                <a href="uniSsd.jsp"> Vista Università per SSD</a>
                             </li>
                             <li>
                                 <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>

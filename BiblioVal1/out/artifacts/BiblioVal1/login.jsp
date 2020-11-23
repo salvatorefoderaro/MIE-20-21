@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <title>Login Page</title>
+        <title>BiblioEvaluate - Login</title>
 
         <link href="bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -32,8 +32,6 @@
 
     <body>
 
-    <%= session.getAttribute("role") %>
-               
         <div  id="error" class="alert alert-danger fade in">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Login fallito</strong> -  Nome Utente e/o Password errati.

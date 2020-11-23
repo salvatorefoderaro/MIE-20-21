@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.DriverManager" %>
@@ -77,7 +78,7 @@
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
 
             PreparedStatement ps = con.prepareStatement("SELECT Distinct Ateneo FROM UNI_ADU_TABLE");
 
@@ -116,7 +117,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Pannello Amministratore</a>
+                    <a class="navbar-brand">Pannello Giornal</a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -145,10 +146,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="resJournal/uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="resJournal/uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="resJournal/uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="resJournal/uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="resJournal/profAssoluta.jsp">Vista Docenti Assoluta</a>

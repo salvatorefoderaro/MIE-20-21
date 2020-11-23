@@ -182,7 +182,7 @@
                     <c:when test="${profAssolutaList == 'null'}">
                         <script>
                             console.log("ciao " +${profAssolutaList});
-                            $.post('ProfAssoluta', reload);
+                            $.post('../adminn/ProfAssoluta', reload);
                         </script>                            
                     </c:when>
 

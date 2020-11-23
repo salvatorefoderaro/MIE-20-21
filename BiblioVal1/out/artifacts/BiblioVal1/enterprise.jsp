@@ -1,3 +1,11 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.LinkedHashSet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +70,34 @@
         <%
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("login.jsp");
+            }
+
+            if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
+                response.sendRedirect("../login.jsp");
+            }
+
+            try {
+                Class.forName("com.mysql.jdbc.Driver");  //load driver
+
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
+
+                PreparedStatement ps = con.prepareStatement("SELECT Distinct Ateneo FROM UNI_ADU_TABLE");
+
+                ResultSet rs = ps.executeQuery();
+
+                List<String> list = new ArrayList<String>();
+
+                while (rs.next()) {
+
+                    list.add(rs.getString("Ateneo"));
+
+                }
+                Collections.sort(list);
+                session.setAttribute("uniList", list);
+
+            } catch(Exception e)
+            {
+                out.println("ERRORE NELL'ELIMINAZIONE DELLA LICENZA.");
             }
         %>
         <c:if test="${messageList == 'null'}">

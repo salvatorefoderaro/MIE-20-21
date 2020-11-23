@@ -179,7 +179,7 @@
         <c:choose>
             <c:when test="${uniSsdList == 'null'}">
                 <script>
-                    $.post('UniSsd', reload);
+                    $.post('../admin/UniSsd', reload);
                 </script>
             </c:when>
 

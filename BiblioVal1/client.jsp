@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.DriverManager" %>
@@ -14,7 +15,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>BiblioEvaluate</title>
+        <title>BiblioEvaluate - Student</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -127,10 +128,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="student/uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="student/uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="student/uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="student/uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="student/profAssoluta.jsp">Vista Docenti Assoluta</a>

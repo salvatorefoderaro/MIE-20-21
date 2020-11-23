@@ -62,6 +62,16 @@
 
 <body>
 
+<div  id="error" class="alert alert-danger fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Login fallito</strong> -  Nome Utente e/o Password errati.
+</div>
+
+<div  id="ok" class="alert alert-success fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Login fallito</strong> -  Nome Utente e/o Password errati.
+</div>
+
 <%
     if (null == session.getAttribute("userId")) {
         response.sendRedirect("../login.jsp");
@@ -100,13 +110,13 @@
 
                 con.close(); //connection close
 
-                out.println("LICENZA ELIMINATA CORRETTAMETE."); //after update record successfully message
+                session.setAttribute("error2", "ok");
 
 
             }
             catch(Exception e)
             {
-                out.println("ERRORE NELL'ELIMINAZIONE DELLA LICENZA.");
+                session.setAttribute("error2", "errore");
             }
 
         }
@@ -316,5 +326,25 @@
 
     </div>
 </div>
+
+<script>
+    function checkError(){
+        if(${error2 == "errore"}) {
+            document.getElementById("error").style.display = 'block';
+        }
+        else  {
+            document.getElementById("error").style.display = 'none';
+        }
+
+        if(${error2 == "ok"}) {
+            document.getElementById("ok").style.display = 'block';
+        }
+        else {
+            document.getElementById("ok").style.display = 'none';
+        }
+    }
+    checkError();
+</script>
+
 </body>
 </html>

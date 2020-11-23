@@ -333,7 +333,7 @@
             function test() {
                 if ($.cookie('aduBiblio') === 'null' || $.cookie('nonBiblio') === 'null' ||
                         !$.cookie('aduBiblio') || !$.cookie('nonBiblio')) {
-                    $.post('RipartPersServlet', all);
+                    $.post('/BiblioVal1/admin/RipartPersServlet', all);
                 } else {
                     all();
                 }
