@@ -60,6 +60,7 @@
             if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
                 response.sendRedirect("../login.jsp");
             }
+            session.setAttribute("redirect", "enterprise/uniSsd.jsp");
         %>
         <div id="wrapper">
 
@@ -115,10 +116,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -179,13 +180,13 @@
                 <!-- /.navbar-static-side -->
             </nav>
 
-               <div id="page-wrapper">    
+               <div id="page-wrapper">
                   <div class="row">
                       <div class="col-lg-12">
-                          <h1 class="page-header">Tabella Universit� per SSD</h1>
+                          <h1 class="page-header">Tabella Università per SSD</h1>
                       </div>
                   </div>
-                        
+
                    <c:choose>
                         <c:when test="${selectedUni == 'null'}">
                             <script>
@@ -194,13 +195,13 @@
                                 });
                             </script>
                         </c:when>
-                            
+
                         <c:when test="${uniSsdList == 'null'}">
                             <script>
                                  $.post('../admin/UniSsd',reload);
-                            </script>                            
+                            </script>
                         </c:when>
-                            
+
                         <c:otherwise>
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -208,11 +209,11 @@
                                                 <div class="panel-heading">
                                                     <div class="row">
                                                         <div class="col-lg-6" align="left">
-                                                            <h4>Universit�: ${selectedUni}</h4>
+                                                            <h4>Università: ${selectedUni}</h4>
                                                         </div>
                                                         <div class="col-lg-6" align="right">
                                                             <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="panel-body">
@@ -232,9 +233,9 @@
                                                                     <tr class="odd gradeX">
                                                                         <td style="min-width: 100px">${p.getSSD()}</td>
                                                                         <td>${p.getResearchStaff()}</td>
-                                                                        <td>${p.getFSS()}</td>  
-                                                                        <td style="min-width: 100px">${p.getRank()}</td> 
-                                                                        <td>${p.getPercentile()}</td>  
+                                                                        <td>${p.getFSS()}</td>
+                                                                        <td style="min-width: 100px">${p.getRank()}</td>
+                                                                        <td>${p.getPercentile()}</td>
                                                                     </tr>
                                                                 </c:forEach>
                                                             </tbody>
@@ -243,7 +244,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>                              
+                                    </div>
                         </c:otherwise>
                     </c:choose>
               </div>
@@ -257,7 +258,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
+                    <h4 class="modal-title" align="center" >Seleziona l'Università</h4>
                 </div>
                 <div class="modal-body" align="center">
                     <form role="form" action="../admin/UniSsd" method="POST">

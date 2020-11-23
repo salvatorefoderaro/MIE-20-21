@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.DriverManager" %>
@@ -74,6 +75,9 @@
             response.sendRedirect("logout.jsp");
         }
 
+        if (session.getAttribute("redirect") != null)
+            response.sendRedirect((String)session.getAttribute("redirect"));
+
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
 
@@ -92,6 +96,9 @@
             }
             Collections.sort(list);
             session.setAttribute("uniList", list);
+            if (session.getAttribute("firstAccess") == null)
+                session.setAttribute("selectedUni", "null");
+                session.setAttribute("firstAccess", "no");
 
         } catch(Exception e)
         {
@@ -116,7 +123,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Pannello Amministratore</a>
+                    <a class="navbar-brand">Pannello Giornal</a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -145,10 +152,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="resJournal/uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="resJournal/uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="resJournal/uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="resJournal/uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="resJournal/profAssoluta.jsp">Vista Docenti Assoluta</a>

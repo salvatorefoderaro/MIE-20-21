@@ -1,4 +1,3 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -59,7 +58,12 @@
                                     <div class="form-group">
                                         <input name="password" type="password" class="form-control" title="Password" value="" size="30" maxlength="48" placeholder="Password"/>
                                     </div>
+
                                     <input class="btn btn-lg btn-success btn-block" type="submit" value="Login" />
+
+                                    <br>
+
+                                    <a href="loginCoupon.jsp"><input class="btn btn-lg btn-success btn-block" value="Login con coupon" /></a>
                                 </fieldset>
                             </form>
                         </div>

@@ -81,6 +81,9 @@
     if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
         response.sendRedirect("../login.jsp");
     }
+
+    session.setAttribute("error2", "");
+
 %>
 
 <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"

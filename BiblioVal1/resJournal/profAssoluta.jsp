@@ -61,6 +61,7 @@
         if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") && !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
             response.sendRedirect("../login.jsp");
         }
+        session.setAttribute("redirect", "resJournal/profAssoluta.jsp");
     %>
         <div id="wrapper">
 

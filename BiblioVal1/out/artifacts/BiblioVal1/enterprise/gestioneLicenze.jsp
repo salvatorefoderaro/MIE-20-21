@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
 <%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
@@ -64,12 +65,12 @@
 
 <div  id="error" class="alert alert-danger fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Login fallito</strong> -  Nome Utente e/o Password errati.
+    <strong>Errore nell'eliminazione della licenza.</strong>
 </div>
 
 <div  id="ok" class="alert alert-success fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Login fallito</strong> -  Nome Utente e/o Password errati.
+    <strong>Licenza eliminata correttamente!</strong>
 </div>
 
 <%
@@ -80,6 +81,9 @@
     if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
         response.sendRedirect("../login.jsp");
     }
+
+    session.setAttribute("error2", "");
+
 %>
 
 <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
@@ -174,10 +178,10 @@
                         <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                <a href="uniAdu.jsp"> Vista Università per ADU</a>
                             </li>
                             <li>
-                                <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
+                                <a href="uniSsd.jsp"> Vista Università per SSD</a>
                             </li>
                             <li>
                                 <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>

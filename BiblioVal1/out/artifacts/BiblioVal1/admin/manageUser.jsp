@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,10 +195,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista UniversitÃ  per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista UniversitÃ  per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -281,7 +282,7 @@
                                                 <th>User Id</th>
                                                 <th>Nome</th>
                                                 <th>Cognome</th>
-                                                <th>Università</th>
+                                                <th>UniversitÃ </th>
                                                 <th>Ruolo</th>
                                                 <th>Scadenza</th>
                                                 <th>Elimina</th>
@@ -377,7 +378,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Seleziona l'univeristà  dell'utente</label>
+                                        <label>Seleziona l'univeristï¿½ dell'utente</label>
                                         <select class="form-control" name="uni" id="uni">
                                             <c:forEach items="${uniList}" var="uni">
                                                 <option value="${uni}">${uni}</option>
@@ -385,7 +386,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Inserisci il periodo di validità dell'account</label> &nbsp; &nbsp;
+                                        <label>Inserisci il periodo di validitï¿½ dell'account</label> &nbsp; &nbsp;
                                         <input data-provide="datepicker" name="new_date" id="new_date">
                                     </div>
                                     <div align="center">
@@ -410,7 +411,7 @@
                         <h4 class="modal-title" style="color: red">Impossibile elimanare l'utente!</h4>
                     </div>
                     <div class="modal-body" align="center">
-                        <h3>L'utente selezionato è un amministratore</h3>
+                        <h3>L'utente selezionato ï¿½ un amministratore</h3>
                     </div>
                 </div>
 

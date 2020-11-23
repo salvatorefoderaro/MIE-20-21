@@ -127,10 +127,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="student/uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="student/uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="student/uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="student/uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="student/profAssoluta.jsp">Vista Docenti Assoluta</a>

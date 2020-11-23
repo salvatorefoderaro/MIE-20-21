@@ -60,6 +60,8 @@
         if (!session.getAttribute("role").toString().equalsIgnoreCase("journalist") && !session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
             response.sendRedirect("../login.jsp");
         }
+        session.setAttribute("redirect", "resJournal/uniSsd.jsp");
+
     %>
 
      <div id="wrapper">
@@ -104,10 +106,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -172,7 +174,7 @@
                <div id="page-wrapper">    
                   <div class="row">
                       <div class="col-lg-12">
-                          <h1 class="page-header">Tabella Universit� per SSD</h1>
+                          <h1 class="page-header">Tabella Università per SSD</h1>
                       </div>
                   </div>
                         

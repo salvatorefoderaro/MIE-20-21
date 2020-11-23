@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,10 +134,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista UniversitÃ  per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista UniversitÃ  per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -228,7 +229,7 @@
                     </div>
                     
                      <div class="panel-heading">
-                        Seleziona il file contenente la Vista Univerità
+                        Seleziona il file contenente la Vista Univeritï¿½
                     </div>
                     <div class="panel-body">
                         <div class="row">

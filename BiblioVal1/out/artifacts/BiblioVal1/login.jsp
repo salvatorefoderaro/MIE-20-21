@@ -58,7 +58,12 @@
                                     <div class="form-group">
                                         <input name="password" type="password" class="form-control" title="Password" value="" size="30" maxlength="48" placeholder="Password"/>
                                     </div>
+
                                     <input class="btn btn-lg btn-success btn-block" type="submit" value="Login" />
+
+                                    <br>
+
+                                    <a href="loginCoupon.jsp"><input class="btn btn-lg btn-success btn-block" value="Login con coupon" /></a>
                                 </fieldset>
                             </form>
                         </div>

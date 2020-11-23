@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -103,10 +104,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -180,7 +181,7 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-lg-6" align="left">
-                                        <h4>Universit�: ${selectedUni}</h4>
+                                        <h4>Università: ${selectedUni}</h4>
                                     </div>
                                     <div class="col-lg-6" align="right">
                                         <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
@@ -216,7 +217,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
+                        <h4 class="modal-title" align="center" >Seleziona l'Università</h4>
                     </div>
                     <div class="modal-body" align="center">
                         <form role="form" action="Top20" method="POST">

@@ -61,6 +61,8 @@
             if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
                 response.sendRedirect("../login.jsp");
             }
+            session.setAttribute("redirect", "enterprise/profAssoluta.jsp");
+
         %>
         <div id="wrapper">
 

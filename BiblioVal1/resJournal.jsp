@@ -75,6 +75,9 @@
             response.sendRedirect("logout.jsp");
         }
 
+        if (session.getAttribute("redirect") != null)
+            response.sendRedirect((String)session.getAttribute("redirect"));
+
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
 
@@ -93,6 +96,9 @@
             }
             Collections.sort(list);
             session.setAttribute("uniList", list);
+            if (session.getAttribute("firstAccess") == null)
+                session.setAttribute("selectedUni", "null");
+                session.setAttribute("firstAccess", "no");
 
         } catch(Exception e)
         {

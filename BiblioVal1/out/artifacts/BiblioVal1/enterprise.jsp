@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.PreparedStatement" %>
@@ -76,6 +77,9 @@
                 response.sendRedirect("../login.jsp");
             }
 
+            if (session.getAttribute("redirect") != null)
+                response.sendRedirect((String)session.getAttribute("redirect"));
+
             try {
                 Class.forName("com.mysql.jdbc.Driver");  //load driver
 
@@ -94,7 +98,9 @@
                 }
                 Collections.sort(list);
                 session.setAttribute("uniList", list);
-
+                if (session.getAttribute("firstAccess") == null)
+                    session.setAttribute("selectedUni", "null");
+                session.setAttribute("firstAccess", "no");
             } catch(Exception e)
             {
                 out.println("ERRORE NELL'ELIMINAZIONE DELLA LICENZA.");
@@ -159,10 +165,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="enterprise/uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="enterprise/uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="enterprise/uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="enterprise/uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="enterprise/profAssoluta.jsp">Vista Docenti Assoluta</a>
