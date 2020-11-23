@@ -99,15 +99,15 @@
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("../login.jsp");
             }
+
             if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
                 response.sendRedirect("../login.jsp");
             }
-
         %>
 
         <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
                            url = "jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true"
-                           user = "root" password = "Foderaro95"/>
+                           user = "root" password = "root"/>
         <sql:query dataSource = "${snapshot}" var = "result">
             SELECT * from UNI_ADU_TABLE WHERE Ateneo= 'Università degli Studi di Pavia (2009-2013)';
         </sql:query>
@@ -141,7 +141,7 @@
                         pstmt.setString(4,var4);
                         pstmt.setString(5,request.getParameter("ruolo"));
                         pstmt.setString(6,request.getParameter("scadenza"));
-                        if (request.getParameter("ruolo") = "researcher"){
+                        if (request.getParameter("ruolo") == "researcher"){
                             pstmt.setString(7,"all");
                             pstmt.setString(8,(String)session.getAttribute("userId"));
                             pstmt.setString(9,null);
@@ -324,7 +324,7 @@
                                                 <select class="form-control" name="ruolo" id="role" required>
                                                     <option value=""></option>
                                                     <option value="researcher">Ricercatore</option>
-                                                    <option value="student">studente</option>
+                                                    <option value="student">Studente</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -379,7 +379,7 @@
 
             $('#role').change(function() {
                 opt = $(this).val();
-                if (opt=="ricercatore") {
+                if (opt == "researcher") {
                     document.getElementById("facolta").style.display = 'none';
                     document.getElementById("facoltaLabel").style.display = 'none';
                 }else{

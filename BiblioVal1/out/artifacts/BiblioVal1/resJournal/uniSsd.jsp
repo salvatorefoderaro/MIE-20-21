@@ -198,7 +198,7 @@
                                                 <div class="panel-heading">
                                                     <div class="row">
                                                         <div class="col-lg-6" align="left">
-                                                            <h4>Universit�: ${selectedUni}</h4>
+                                                            <h4>Università: ${selectedUni}</h4>
                                                         </div>
                                                         <div class="col-lg-6" align="right">
                                                             <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
@@ -247,7 +247,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
+                    <h4 class="modal-title" align="center" >Seleziona l'università</h4>
                 </div>
                 <div class="modal-body" align="center">
                     <form role="form" action="../admin/UniSsd" method="POST">

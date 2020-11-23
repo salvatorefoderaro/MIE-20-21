@@ -66,6 +66,7 @@
     if (null == session.getAttribute("userId")) {
         response.sendRedirect("../login.jsp");
     }
+
     if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
         response.sendRedirect("../login.jsp");
     }
@@ -73,7 +74,7 @@
 
 <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
                    url = "jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true"
-                   user = "root" password = "Foderaro95"/>
+                   user = "root" password = "root"/>
 <sql:query dataSource = "${snapshot}" var = "result">
     SELECT * from USER WHERE organization= '<%= session.getAttribute("userId") %>';
 </sql:query>
@@ -88,7 +89,7 @@
             {
                 Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true","root","Foderaro95"); // create connection
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true","root","root"); // create connection
 
                 PreparedStatement pstmt=null; //create statement
 

@@ -58,7 +58,7 @@
 %>
 
 <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
-                   url = "jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true"
+                   url = "jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true"
                    user = "root" password = "root"/>
 <sql:query dataSource = "${snapshot}" var = "result">
     SELECT SSD,ResearchStaff,FSS,Rank,Percentile FROM UNI_SSD_TABLE where Ateneo='<%= session.getAttribute("uniScelta") %>' and SSD in (SELECT SSD FROM SSD_ADU_TABLE WHERE TitleADU = '<%= session.getAttribute("facolta") %>');

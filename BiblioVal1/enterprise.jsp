@@ -63,8 +63,9 @@
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("login.jsp");
             }
+
             if (!session.getAttribute("role").toString().equalsIgnoreCase("enterprise")) {
-                response.sendRedirect("logout.jsp");
+                response.sendRedirect("../login.jsp");
             }
         %>
         <c:if test="${messageList == 'null'}">
