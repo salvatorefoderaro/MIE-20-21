@@ -1,4 +1,3 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>BiblioEvaluate</title>
+        <title>BiblioEvaluate - Admin - UpdateDB</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -134,10 +133,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>

@@ -11,7 +11,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>BiblioEvaluate</title>
+        <title>BiblioEvaluate - Enterprise - ManageUser</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
