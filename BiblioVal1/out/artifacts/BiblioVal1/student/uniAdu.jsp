@@ -65,7 +65,7 @@
                            url = "jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true"
                            user = "root" password = "root"/>
         <sql:query dataSource = "${snapshot}" var = "result">
-            SELECT SSD,ResearchStaff,FSS,Rank,Percentile FROM UNI_ADU_TABLE where Ateneo='<%= session.getAttribute("uniScelta") %>' and ADU = '<%= session.getAttribute("facolta") %>';
+            SELECT ADU,ResearchStaff,FSS,Rank,Percentile FROM UNI_ADU_TABLE where Ateneo='<%= session.getAttribute("uniScelta") %>' and ADU = '<%= session.getAttribute("facolta") %>';
         </sql:query>
 
         <div id="wrapper">
@@ -214,7 +214,7 @@
                                                 <tbody>
                                                 <c:forEach items="${result.rows}" var="row">
                                                     <tr class="odd gradeX">
-                                                        <td style="min-width: 100px">${row.SSD}</td>
+                                                        <td style="min-width: 100px">${row.ADU}</td>
                                                         <td>${row.ResearchStaff}</td>
                                                         <td>${row.FSS}</td>
                                                         <td>${row.Rank}</td>

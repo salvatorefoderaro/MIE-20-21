@@ -1,12 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
 
-        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -261,14 +263,16 @@
                     <h4 class="modal-title" align="center" >Seleziona l'Università</h4>
                 </div>
                 <div class="modal-body" align="center">
-                    <form role="form" action="../admin/UniAdu" method="POST">
+                    <form role="form" action="redirect.jsp" method="POST" accept-charset="utf-8">
                         <div class="form-group">
+                            <input type="text" value="uniAdu.jsp" name="page" hidden>
                             <select class="form-control" name="uni" id="uni">
                                 <c:forEach items="${uniList}" var="uni">
                                     <c:choose>
                                         <c:when test="${uni == ''}"></c:when>
                                         <c:when test="${uni == 'all'}"></c:when>
                                         <c:otherwise>
+
                                             <option value="${uni}">${uni}</option>
                                         </c:otherwise>
                                     </c:choose>

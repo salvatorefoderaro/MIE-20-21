@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,22 +99,7 @@
                     <li>
                         <a href="../resJournal.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utenti<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="addUser.jsp">Inserisci Utente</a>
-                            </li>
-                            <li>
-                                <a href="manageUser">Modifica Utenti</a>
-                            </li>
 
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="updateDB.jsp"><i class="fa fa-database"></i> Update Database</a>
-                    </li>
                     <li>
                         <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -264,8 +250,9 @@
                 <h4 class="modal-title" align="center" >Seleziona l'Università</h4>
             </div>
             <div class="modal-body" align="center">
-                <form role="form" action="../admin/UniAdu" method="POST">
+                <form role="form" action="redirect.jsp" method="POST">
                     <div class="form-group">
+                        <input type="text" value="uniAdu.jsp" name="page" hidden>
                         <select class="form-control" name="uni" id="uni">
                             <c:forEach items="${uniList}" var="uni">
                                 <c:choose>

@@ -7,6 +7,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="java.util.LinkedHashSet" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="java.util.logging.Logger" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +85,9 @@
             try {
                 Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
+                Logger logger = Logger.getLogger(this.getClass().getName());
+
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true&characterEncoding=utf-8", "root", "root"); // create connection
 
                 PreparedStatement ps = con.prepareStatement("SELECT Distinct Ateneo FROM UNI_ADU_TABLE");
 
@@ -93,7 +97,12 @@
 
                 while (rs.next()) {
 
-                    list.add(rs.getString("Ateneo"));
+
+                byte[] bytes = rs.getString("Ateneo").getBytes(StandardCharsets.UTF_8);
+
+                String newString = new String(bytes, StandardCharsets.UTF_8);
+                    logger.info(newString);
+                    list.add(newString);
 
                 }
                 Collections.sort(list);
