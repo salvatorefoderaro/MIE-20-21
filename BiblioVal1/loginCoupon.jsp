@@ -72,7 +72,7 @@
             }
         } catch(Exception e)
         {
-            out.println("ERRORE NELL'ELIMINAZIONE DELLA LICENZA.");
+            session.setAttribute("error2", "errore");
         }
 
     }

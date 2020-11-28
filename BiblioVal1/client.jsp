@@ -41,7 +41,7 @@
             }
 
             else if (session.getAttribute("role").toString().equalsIgnoreCase("enterprise")){
-                response.sendRedirect("enterprise.jsp");
+                response.sendRedirect("enterprise/gestioneLicenze.jsp");
             }
 
             else if (session.getAttribute("role").toString().equalsIgnoreCase("journalist") || session.getAttribute("role").toString().equalsIgnoreCase("researcher")) {
@@ -66,10 +66,9 @@
 
                     session.setAttribute("facolta", rs.getString("facolta"));
                     session.setAttribute("uniScelta", rs.getString("uni"));
+                    response.sendRedirect("student/uniAdu.jsp");
 
                 } else {
-
-                    out.println("COUPON NON CORRETTO.");
 
                 }
             } catch(Exception e)

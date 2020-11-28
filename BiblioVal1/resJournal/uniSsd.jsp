@@ -98,9 +98,8 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="../resJournal.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
-                            </li>
-
+                                <a href="uniAdu.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                            </li
 
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>

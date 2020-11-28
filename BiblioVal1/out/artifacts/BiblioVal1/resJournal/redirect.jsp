@@ -35,30 +35,6 @@
 
 
 <body>
-<center>
-    <h1>Using POST Method to Read Form Data</h1>
-
-    <ul>
-        <li><p><b>First Name:</b>
-
-            <%
-
-                request.setCharacterEncoding("UTF-8");
-
-                byte[] bytes = request.getParameter("uni").getBytes(StandardCharsets.UTF_8);
-
-                String newString = new String(bytes, StandardCharsets.UTF_8);
-
-
-            %>
-
-            <%= newString %>
-
-        </p></li>
-        <li><p><b>Last  Name:</b>
-            <%= request.getParameter("uni")%>
-        </p></li>
-    </ul>
 
 </body>
 </html>

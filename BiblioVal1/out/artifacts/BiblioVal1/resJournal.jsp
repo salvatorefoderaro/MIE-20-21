@@ -18,7 +18,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>BiblioEvaluate</title>
+        <title>BiblioEvaluate - ResJournal</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -78,10 +78,12 @@
         if (session.getAttribute("redirect") != null)
             response.sendRedirect((String)session.getAttribute("redirect"));
 
+
+        Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true", "root", "root"); // create connection
 
             PreparedStatement ps = con.prepareStatement("SELECT Distinct Ateneo FROM UNI_ADU_TABLE");
 
@@ -99,10 +101,22 @@
             if (session.getAttribute("firstAccess") == null)
                 session.setAttribute("selectedUni", "null");
                 session.setAttribute("firstAccess", "no");
+                if (session.getAttribute("role").toString().equalsIgnoreCase("journalist")){
 
+            ps = con.prepareStatement("SELECT Distinct scadenza FROM USER WHERE user_id = ?");
+            ps.setString(1, (String) session.getAttribute("userId"));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                session.setAttribute("scadenza", rs.getString("scadenza"));
+
+            }
+                }
         } catch(Exception e)
         {
             out.println("ERRORE NELL'ELIMINAZIONE DELLA LICENZA.");
+        } finally {
+            con.close();
         }
 
 
@@ -123,7 +137,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Pannello Giornal</a>
+                    <a class="navbar-brand">Pannello Giornalista/Ricercatore</a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -226,38 +240,15 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-lg-6" align="left">
-                                            <i class="fa fa-bell fa-fw"></i> Feedback Recenti
+                                            <i class="fa fa-bell fa-fw"></i> Scadenza: <b><%= session.getAttribute("scadenza")%></b>
                                         </div>
                                         <div class="col-lg-6" align="right">
-                                            <button class="btn btn-primary" onclick="update()">Aggiorna</button>
+                                            <button class="btn btn-primary" onclick="update()">Rinnova licenza</button>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="dataTable_wrapper">
-                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                            <thead>
-                                                <tr>
-                                                    <th>Titolo</th>
-                                                    <th>Messaggio</th>
-                                                    <th>Elimina</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${messageList}" var="msg">
-                                                    <tr>
-                                                        <td style="min-width: 150px">${msg.getTitle()}</td>
-                                                        <td style="min-width: 500px">${msg.getMessaggio()}</td>
-                                                        <td style="min-width: 20px" align="center" onclick="openModalRemoveMsg('${msg.getId()}');" title="Clicca per rimuovere">
-                                                            <img src="images/del.png" width="30" height="30">
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.panel-body -->
-                                </div>
+
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>

@@ -1,10 +1,4 @@
-<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
-<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
-<%@ page import="java.security.MessageDigest" %>
-<%@ page import="java.math.BigInteger" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +6,11 @@
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>BiblioEvaluate</title>
+        <title>BiblioEvaluate - Admin - AddUser</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -94,7 +87,6 @@
     </head>
 
     <body>
-
         <%
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("../login.jsp");
@@ -102,62 +94,19 @@
             if (!session.getAttribute("role").toString().equalsIgnoreCase("admin")) {
                 response.sendRedirect("../client.jsp");
             }
-
         %>
-
-        <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
-                           url = "jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true"
-                           user = "root" password = "root"/>
-        <sql:query dataSource = "${snapshot}" var = "result">
-            SELECT * from UNI_ADU_TABLE WHERE Ateneo= 'Università degli Studi di Pavia (2009-2013)';
-        </sql:query>
 
         <div id="wrapper">
 
-            <%
+            <div  id="bene" class="alert alert-success fade in" hidden="true">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Operazione Completata</strong> -  Nuovo utente aggiunto nel sistema.
+            </div>
 
-                if(request.getParameter("submit") != null){
-
-                    try
-                    {
-                        Class.forName("com.mysql.jdbc.Driver");  //load driver
-
-                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3309/osservatorio_biblioval?autoReconnect=true","root","root"); // create connection
-
-                        MessageDigest var1 = MessageDigest.getInstance("MD5");
-                        byte[] var2 = var1.digest(request.getParameter("password").getBytes());
-                        BigInteger var3 = new BigInteger(1, var2);
-
-                        String var4;
-                        for(var4 = var3.toString(16); var4.length() < 32; var4 = "0" + var4) {
-                        }
-
-                        PreparedStatement pstmt=null; //create statement
-
-                        pstmt=con.prepareStatement("insert into USER(user_id, cognome, nome, password, ruolo, scadenza, uni, organization, facolta) values(?, ?, ?, ?, ?, ?, ?, ?, ?)"); //sql update query
-                        pstmt.setString(1,request.getParameter("user_id"));
-                        pstmt.setString(2,request.getParameter("cognome"));
-                        pstmt.setString(3,request.getParameter("nome"));
-                        pstmt.setString(4,var4);
-                        pstmt.setString(5,request.getParameter("ruolo"));
-                        pstmt.setString(6,request.getParameter("scadenza"));
-                        pstmt.setString(7,(String)session.getAttribute("userId"));
-                        pstmt.setString(8,(String)session.getAttribute("userId"));
-                        pstmt.setString(9,request.getParameter("facolta"));
-                        pstmt.executeUpdate(); //execute query
-
-                        con.close(); //connection close
-
-                        out.println("UTENTE AGGIUNTO CORRETTAMENTE."); //after update record successfully message
-
-                    }
-                    catch(Exception e)
-                    {
-                        out.println("ERRORE NELL'AGGIUNTA DELL'UTENTE.");
-                    }
-
-                }
-            %>
+            <div  id="error" class="alert alert-danger fade in" hidden="true">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Operazione Fallita</strong> -  Errore nell'aggiunta del nuovo utente nel sistema.
+            </div>
 
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -213,10 +162,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -296,18 +245,18 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-8" >
-                                        <form role="form" action="addUser.jsp" method="GET">
+                                        <form role="form" action="RegisterServlet" method="POST">
                                             <div class="form-group">
                                                 <label>Inserisci il nome dell'utente</label>
-                                                <input class="form-control" name="nome" placeholder="Inserisci il nome" required>
+                                                <input class="form-control" name="firstName" placeholder="Inserisci il nome">
                                             </div>
                                             <div class="form-group">
                                                 <label>Inserisci il cognome dell'utente</label>
-                                                <input class="form-control" name="cognome" placeholder="Inserisci il cognome dell'utente" required>
+                                                <input class="form-control" name="lastName" placeholder="Inserisci il cognome dell'utente">
                                             </div>
                                             <div class="form-group">
                                                 <label>Inserisci il nome utente</label>
-                                                <input class="form-control" name="user_id" placeholder="Inserisci il nome utente" required>
+                                                <input class="form-control" name="userId" placeholder="Inserisci il nome utente">
                                                 <input class="form-control" name="check" id="checkUpdate" type="hidden" value="false">
                                             </div>
                                             <div align="center">
@@ -318,26 +267,26 @@
 
                                             <div class="form-group">
                                                 <label>Inserisci il ruolo dell'utente</label>
-                                                <select class="form-control" name="ruolo" id="role" required>
+                                                <select class="form-control" name="role">
                                                     <option value=""></option>
-                                                    <option value="ricercatore">Ricercatore</option>
-                                                    <option value="studente">studente</option>
+                                                    <option value="admin">Amministratore</option>
+                                                    <option value="client">Cliente</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label id="facoltaLabel">Seleziona la facoltà dell'utente</label>
-                                                <select class="form-control" name="facolta" id="facolta">
-                                                    <c:forEach items="${result.rows}" var="row">
-                                                        <option value="${row.ADU}">${row.ADU}</option>
+                                                <label>Seleziona l'univerist� dell'utente</label>
+                                                <select class="form-control" name="uni">
+                                                    <c:forEach items="${uniList}" var="uni">
+                                                        <option value="${uni}">${uni}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Inserisci il periodo di validità dell'account</label> &nbsp; &nbsp;
-                                                <input data-provide="datepicker" name="scadenza" required>
+                                                <label>Inserisci il periodo di validit� dell'account</label> &nbsp; &nbsp;
+                                                <input data-provide="datepicker" name="date">
                                             </div> 
                                             <div align="center">
-                                                <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                                                <input type="submit" value="Submit" class="btn btn-primary">
                                             </div>
                                         </form>
                                     </div>
@@ -372,19 +321,7 @@
                     document.getElementById("error").style.display = 'none';
                     document.getElementById("bene").style.display = 'none';
                 }
-            };
-
-            $('#role').change(function() {
-                opt = $(this).val();
-                if (opt=="ricercatore") {
-                    document.getElementById("facolta").style.display = 'none';
-                    document.getElementById("facoltaLabel").style.display = 'none';
-                }else{
-                    document.getElementById("facolta").style.display = 'block';
-                    document.getElementById("facoltaLabel").style.display = 'block';
-
-                }
-            });
+            }
             checkError();
         </script>
     </body>
