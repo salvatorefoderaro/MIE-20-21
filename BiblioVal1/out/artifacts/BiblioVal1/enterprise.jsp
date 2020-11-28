@@ -112,7 +112,6 @@
                 session.setAttribute("firstAccess", "no");
             } catch(Exception e)
             {
-                out.println("ERRORE NELL'ELIMINAZIONE DELLA LICENZA.");
             }
         %>
         <c:if test="${messageList == 'null'}">

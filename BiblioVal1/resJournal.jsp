@@ -78,7 +78,6 @@
         if (session.getAttribute("redirect") != null)
             response.sendRedirect((String)session.getAttribute("redirect"));
 
-
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
@@ -101,6 +100,7 @@
             if (session.getAttribute("firstAccess") == null)
                 session.setAttribute("selectedUni", "null");
                 session.setAttribute("firstAccess", "no");
+
                 if (session.getAttribute("role").toString().equalsIgnoreCase("journalist")){
 
             ps = con.prepareStatement("SELECT Distinct scadenza FROM USER WHERE user_id = ?");
@@ -118,7 +118,6 @@
         } finally {
             con.close();
         }
-
 
     %>
         <c:if test="${messageList == 'null'}">
@@ -230,6 +229,10 @@
                 <!-- /.navbar-static-side -->
             </nav>
 
+
+            <% if (session.getAttribute("scadenza") == null){
+                response.sendRedirect("resJournal/uniAdu.jsp");
+            } else { %>
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
@@ -284,3 +287,5 @@
         </div>
     </body>
 </html>
+
+<% } %>

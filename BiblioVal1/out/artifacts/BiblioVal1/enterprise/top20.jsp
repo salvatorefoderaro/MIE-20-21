@@ -84,7 +84,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="../enterprise.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                                <a href="gestioneLicenze.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utenti<span class="fa arrow"></span></a>

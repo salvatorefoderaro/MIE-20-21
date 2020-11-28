@@ -26,9 +26,8 @@
         $(document).ready(function(){
         /// here you can put all the code that you want to run after page load
             $.post( "../admin/UniAdu", { uni :             "<%= request.getParameter("uni")%>" } ) .done(function( data ) {
-                window.location.replace("<%= request.getParameter("page")%>");
+                    window.location.replace("<%= request.getParameter("page")%>");
             });;
-
     });
 </script>
 

@@ -78,7 +78,6 @@
         if (session.getAttribute("redirect") != null)
             response.sendRedirect((String)session.getAttribute("redirect"));
 
-
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");  //load driver
@@ -101,6 +100,7 @@
             if (session.getAttribute("firstAccess") == null)
                 session.setAttribute("selectedUni", "null");
                 session.setAttribute("firstAccess", "no");
+
                 if (session.getAttribute("role").toString().equalsIgnoreCase("journalist")){
 
             ps = con.prepareStatement("SELECT Distinct scadenza FROM USER WHERE user_id = ?");
@@ -118,7 +118,6 @@
         } finally {
             con.close();
         }
-
 
     %>
         <c:if test="${messageList == 'null'}">
@@ -230,6 +229,10 @@
                 <!-- /.navbar-static-side -->
             </nav>
 
+
+            <% if (session.getAttribute("scadenza") == null){
+                response.sendRedirect("resJournal/uniAdu.jsp");
+            } else { %>
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
@@ -240,7 +243,7 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-lg-6" align="left">
-                                            <i class="fa fa-bell fa-fw"></i> Scadenza: <b><%= session.getAttribute("scadenza")%></b>
+                                            <i class="fa fa-bell fa-fw"></i> Scadenza: <b><%= session.getAttribute("scadenza").toString().split(" ")[0] %></b>
                                         </div>
                                         <div class="col-lg-6" align="right">
                                             <button class="btn btn-primary" onclick="update()">Rinnova licenza</button>
@@ -284,3 +287,5 @@
         </div>
     </body>
 </html>
+
+<% } %>

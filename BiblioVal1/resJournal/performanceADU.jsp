@@ -84,7 +84,11 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
+                                <% if (session.getAttribute("role").toString().equalsIgnoreCase("journalist")){ %>
+                                <a href="../resJournal.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                                <% } else { %>
                                 <a href="uniAdu.jsp"><i class="fa fa-home fa-fw"></i> Home</a>
+                                <% } %>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
