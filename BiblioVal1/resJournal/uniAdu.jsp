@@ -54,6 +54,7 @@
 </head>
 
 <body>
+
 <%
     if (null == session.getAttribute("userId")) {
         response.sendRedirect("../login.jsp");
@@ -63,6 +64,7 @@
     }
     session.setAttribute("redirect", "resJournal/uniAdu.jsp");
 %>
+
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -135,7 +137,7 @@
                                         <a href="performanceUni.jsp">Performance media</a>
                                     </li>
                                     <li>
-                                        <a href="performanceADU.jsp">Performanance delle ADU</a>
+                                        <a href="performanceADU.jsp">Performance delle ADU</a>
                                     </li>
                                     <li>
                                         <a href="performanceSSD.jsp">Performance degli SSD</a>
@@ -205,7 +207,7 @@
                                         <h4>Università: ${selectedUni}</h4>
                                     </div>
                                     <div class="col-lg-6" align="right">
-                                        <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
+                                        <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Università</button>
                                     </div>
                                 </div>
                             </div>

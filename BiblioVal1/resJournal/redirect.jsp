@@ -1,7 +1,7 @@
 <%@ page import="java.nio.charset.StandardCharsets" %>
 <%@ page import="java.net.http.HttpClient" %>
 
-<%                 request.setCharacterEncoding("UTF-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
     <title>Using GET and POST Method to Read Form Data</title>
