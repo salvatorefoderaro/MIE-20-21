@@ -1,6 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="java.util.logging.Logger" %>
+<%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +47,7 @@
     </head>
 
     <body>
+    <%= session.getAttribute("selectedUni") %>
         <%
             if (null == session.getAttribute("userId")) {
                 response.sendRedirect("../login.jsp");
@@ -48,7 +55,75 @@
             if (!session.getAttribute("role").toString().equalsIgnoreCase("admin")) {
                 response.sendRedirect("../client.jsp");
             }
+
+            if (request.getParameter("uni") != null || session.getAttribute("selectedUni") != "null") {
+                out.print(request.getParameter("uni"));
+                session.setAttribute("selectedUni", request.getParameter("uni"));
+                Map<String, Integer> data = new HashMap<String, Integer>();
+                int somma = 0;
+                String json = "{[";
+                double counter = 1;
+                int counteKeySet = 1;
+
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");  //load driver
+
+                    Logger logger = Logger.getLogger(this.getClass().getName());
+
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/osservatorio_biblioval?autoReconnect=true&characterEncoding=utf-8", "root", "root"); // create connection
+
+                    PreparedStatement ps = con.prepareStatement("SELECT COUNT(ADU.TitleADU) contatore, ADU.TitleADU titolo\n" +
+                            "FROM PROF_ASSOLUTO_TABLE as PROF\n" +
+                            "JOIN SSD_ADU_TABLE as ADU on PROF.SSD = ADU.SSD\n" +
+                            "WHERE ADU.Bibliometrico=\"SI\"\n" +
+                            "AND PROF.Ateneo = ?\n" +
+                            "GROUP BY ADU.TitleADU");
+
+                    if (session.getAttribute("selectedUni") != "null"){
+                        ps.setString(1,"Stazione Zoologica Anton Dohrn (2011-2013)");
+                    } else {
+                        ps.setString(1, "Stazione Zoologica Anton Dohrn (2011-2013)");
+                    }
+
+                    ResultSet rs = ps.executeQuery();
+
+                    while (rs.next()) {
+                        out.print("Il risultato è: " + rs.getString("titolo"));
+                        data.put(rs.getString("titolo"), rs.getInt("contatore"));
+                        somma = somma + rs.getInt("contatore");
+                    }
+
+
+                    for (String key : data.keySet()) {
+                        double value;
+                        if (data.keySet().size() == counteKeySet){
+                            value = (counter - (double)data.get(key)/somma)*100;
+                         } else {
+                            value = ((double)data.get(key)/somma)*100;
+                        }
+
+                        out.print("Value is: " + value  + " " + data.get(key) + " " + somma + (data.get(key)/somma) + "\n");
+
+                        counter = counter - (double)data.get(key)/somma;
+                        json = json + "{\"numProf\":\"" + data.get(key) + "\",\"nomeADU\":\""+ key + "\",\"percentage\":\"" + value + "\"}";
+                        if (data.keySet().size() != counteKeySet){
+                            json = json + ",";
+                        }
+                        counteKeySet = counteKeySet + 1;
+                    }
+                    json = json + "]}";
+                    out.print("\n\n\n" + json + "\n\n\n");
+
+                    session.setAttribute("aduBiblio", json);
+
+                } catch (Exception e) {
+                    out.print(e.toString());
+                }
+
+            }
+
         %>
+
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -183,7 +258,7 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-lg-6" align="left">
-                                        <h4>Universit�: ${selectedUni}</h4>
+                                        <h4>Università: ${selectedUni}</h4>
                                     </div>
                                     <div class="col-lg-6" align="right">
                                         <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
@@ -256,7 +331,7 @@
                         <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
                     </div>
                     <div class="modal-body" align="center">
-                        <form role="form" action="RipartPersServlet" method="POST">
+                        <form role="form" action="ripartizionePersonale.jsp" method="POST">
                             <div class="form-group">
                                 <select class="form-control" name="uni" id="uni">
                                     <c:forEach items="${uniList}" var="uni">
@@ -320,8 +395,9 @@
                     }
 
                     function onlyADU() {
+                        alert(<%= session.getAttribute("aduBiblio")%>);
                         var data = [];
-                        var array = JSON.parse($.cookie('aduBiblio'));
+                        var array = JSON.parse(<%= session.getAttribute("aduBiblio")%>);
                         for (var i = 0; i < array.length; i++) {
                             var color = stringToColour(array[i].nomeADU);
                             var tmp = {
@@ -361,7 +437,7 @@
 
                     function ssdAndAdu() {
                         var dataSsd = [];
-                        var arraySsd = JSON.parse($.cookie('nonBiblio'));
+                        var array = JSON.parse(${aduBiblio});
                         for (var i = 0; i < arraySsd.length; i++) {
                             var color = stringToColour(arraySsd[i].nomeADU);
                             var tmp = {
