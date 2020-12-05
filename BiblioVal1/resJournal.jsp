@@ -230,9 +230,9 @@
             </nav>
 
 
-            <% if (session.getAttribute("scadenza") == null){
+           <%-- <% if (session.getAttribute("scadenza") == null || session.getAttribute("scadenza") == "ricercatore"){
                 response.sendRedirect("resJournal/uniAdu.jsp");
-            } else { %>
+            } else { %> --%>
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
@@ -242,12 +242,16 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="row">
+                                    <% if (session.getAttribute("scadenza") != null) { %>
                                         <div class="col-lg-6" align="left">
                                             <i class="fa fa-bell fa-fw"></i> Scadenza: <b><%= session.getAttribute("scadenza").toString().split(" ")[0] %></b>
                                         </div>
                                         <div class="col-lg-6" align="right">
                                             <button class="btn btn-primary" onclick="update()">Rinnova licenza</button>
                                         </div>
+                                    <% } else { %>
+
+                                        <% } %>
                                     </div>
                                 </div>
                                 <!-- /.panel-heading -->
@@ -288,4 +292,4 @@
     </body>
 </html>
 
-<% } %>
+<%-- <% } %> --%>

@@ -214,13 +214,13 @@
                                                             <h4>Universit�: ${selectedUni}</h4>
                                                         </div>
                                                         <div class="col-lg-6" align="right">
-                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
+                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univeristà</button>
                                                         </div>  
                                                     </div>
                                                 </div>
                                                 <div class="panel-body">
                                                     <div class="dataTable_wrapper">
-                                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                        <table class="table table-striped table-bordered table-hover table-dark" id="dataTables-example">
                                                             <thead>
                                                                 <tr>
                                                                     <th>ADU</th>

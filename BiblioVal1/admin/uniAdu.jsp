@@ -117,10 +117,10 @@
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Tabelle<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="uniAdu.jsp"> Vista Universit� per ADU</a>
+                                        <a href="uniAdu.jsp"> Vista Università per ADU</a>
                                     </li>
                                     <li>
-                                        <a href="uniSsd.jsp"> Vista Universit� per SSD</a>
+                                        <a href="uniSsd.jsp"> Vista Università per SSD</a>
                                     </li>
                                     <li>
                                         <a href="profAssoluta.jsp">Vista Docenti Assoluta</a>
@@ -185,7 +185,7 @@
                <div id="page-wrapper">    
                   <div class="row">
                       <div class="col-lg-12">
-                          <h1 class="page-header">Tabella Universit� per ADU</h1>
+                          <h1 class="page-header">Tabella Università per ADU</h1>
                       </div>
                   </div>
                         
@@ -211,16 +211,16 @@
                                                 <div class="panel-heading">
                                                     <div class="row">
                                                         <div class="col-lg-6" align="left">
-                                                            <h4>Universit�: ${selectedUni}</h4>
+                                                            <h4>Università: ${selectedUni}</h4>
                                                         </div>
                                                         <div class="col-lg-6" align="right">
-                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univerist�</button>
+                                                            <button class="btn btn-primary" onclick="openModalChangeUni('${selectedUni}');">Cambia Univeristà</button>
                                                         </div>  
                                                     </div>
                                                 </div>
                                                 <div class="panel-body">
                                                     <div class="dataTable_wrapper">
-                                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                        <table class="table table-striped table-bordered table-hover table-dark" id="dataTables-example">
                                                             <thead>
                                                                 <tr>
                                                                     <th>ADU</th>
@@ -260,7 +260,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" align="center" >Seleziona l'universit�</h4>
+                    <h4 class="modal-title" align="center" >Seleziona l'università</h4>
                 </div>
                 <div class="modal-body" align="center">
                     <form role="form" action="UniAdu" method="POST">
